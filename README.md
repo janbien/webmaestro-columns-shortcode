@@ -1,6 +1,6 @@
 # Webmaestro Columns Shortcode
 
-WordPress plugin pro rozdělení obsahu do sloupců pomocí shortcode s nejminimalističtějším zápisem.
+WordPress plugin pro rozdělení tvorbu sloupců v editoru pomocí shortcode s nejminimalističtějším zápisem.
 
 **Dva sloupce** (půl na půl):
 
