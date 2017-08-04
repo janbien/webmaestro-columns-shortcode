@@ -1,13 +1,33 @@
 <?php 
 /*
 Plugin Name: Webmaestro Columns Shortcode
-Version: 1.6
+Version: 1.7
 Author: Jan Bien
 Author URI: http://www.janbien.cz/
 Copyright: Jan Bien
 */
 
 if (!defined('ABSPATH')) exit;
+
+add_action('init', 'webmaestro_columns_shortcode_add_button');
+
+function webmaestro_columns_shortcode_add_button() {
+   if ( !current_user_can('edit_posts') ) return;
+   if ( !current_user_can('edit_pages') ) return; 
+	add_filter( 'mce_external_plugins', 'webmaestro_columns_shortcode_add_tinymce_plugin' );  
+	add_filter( 'mce_buttons', 'webmaestro_columns_shortcode_register_tinymce_button' );  
+}    
+
+function webmaestro_columns_shortcode_add_tinymce_plugin( $plugin_array ) {  
+   $plugin_array['webmaestro_columns_shortcode'] = plugin_dir_url( __FILE__ ) .'webmaestro-columns-shortcode.js';
+   return $plugin_array;  
+}
+
+function webmaestro_columns_shortcode_register_tinymce_button( $buttons ) {
+   array_push( $buttons, "webmaestro_columns_shortcode" );  
+   return $buttons;
+}  
+
 
 class Webmaestro_Columns {
 
